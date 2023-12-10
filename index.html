@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Intelligence Reports Viewer</title>
+    <link rel="stylesheet" type="text/css" href="./styles.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css"
+    />
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"
+    ></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <input type="file" id="fileInput" accept=".txt" />
+    <label for="images" class="drop-container" id="dropcontainer">
+    </label>
+
+    <!-- search -->
+    <div id="search">
+      <label for="searchField">Search Field:</label>
+      <select id="searchField">
+        <option value="ID">ID</option>
+        <option value="REPORTDATE">REPORTDATE</option>
+        <option value="REFERENCEID">REFERENCEID</option>
+        <option value="REPORTSOURCE">REPORTSOURCE</option>
+        <option value="REPORTDESCRIPTION">REPORTDESCRIPTION</option>
+        <option value="PERSONS">PERSONS</option>
+        <option value="DATES">DATES</option>
+        <option value="PLACES">PLACES</option>
+        <option value="ORGANIZATIONS">ORGANIZATIONS</option>
+      </select>
+      <label for="searchText">Search Text:</label>
+      <input type="text" id="searchText" />
+      <button onclick="performSearch()">Search</button>
+      <button class="clearAll" onclick="clearSearch()">Clear</button>
+    </div>
+
+    <!-- Table From Upload Section -->
+    <div class="collapsible" onclick="toggleSection('tableSection')">
+      Table From Upload
+    </div>
+    <div id="tableSection" class="content">
+      <div id="tableContainer"></div>
+    </div>
+
+    <!-- Timeline Section -->
+    <div class="collapsible" onclick="toggleSection('timelineSection')">
+      Timeline
+    </div>
+    <div id="timelineSection" class="content">
+      <div id="timeline"></div>
+      <div id="detailsContainer"></div>
+    </div>
+
+    <!-- Network Graph Section -->
+    <div class="collapsible" onclick="toggleSection('graphSection')">
+      Network Graph
+    </div>
+    <div id="graphSection" class="content">
+      <div id="networkGraph"></div>
+    </div>
+
+    <!-- Network Graph Section -->
+    <div class="collapsible" onclick="toggleSection('crimeSection')">
+      Crime By Country
+    </div>
+    <div id="crimeSection" class="content">
+        <h1 id="highestCrimeCountry"></h1>
+        <canvas id="barChart" width="400" height="200"></canvas>
+      </div>
+    </div>
+
+    <div class="collapsible" onclick="toggleSection('crimeMonthSection')">
+      Crime By Month
+    </div>
+    <div id="crimeMonthSection" class="content">
+        <h1 id="highestCrimeMonth"></h1>
+        <canvas id="monthBarChart" width="400" height="200"></canvas>
+      </div>
+    </div>
+
+    
+    
+
+    <script src="script.js"></script>
+
+    <script>
+      function toggleSection(sectionId) {
+        var section = document.getElementById(sectionId);
+        if (section.style.display === "none" || section.style.display === "") {
+          section.style.display = "block";
+        } else {
+          section.style.display = "none";
+        }
+      }
+    </script>
+  </body>
+</html>
